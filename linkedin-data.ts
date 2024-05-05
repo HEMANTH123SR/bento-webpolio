@@ -1,4 +1,5 @@
-export const linkedinData = [
+import { LinkedInData } from "@/app/linkedin.type";
+export const linkedinData: LinkedInData[] = [
   {
     success: true,
     status: 200,
@@ -419,6 +420,7 @@ export const linkedinData = [
                 {
                   type: "textComponent",
                   text: "I am proud to contribute to the growth and success of our community, fostering a culture of innovation and sharing knowledge.",
+                  thumbnail: "",
                 },
                 {
                   type: "mediaComponent",
@@ -2722,15 +2724,6 @@ export const linkedinData = [
           breakdown: true,
           subComponents: [
             {
-              title: "Software Developer",
-              subtitle: "Full-time",
-              caption: "Sep 2022 - Aug 2023 · 1 yr",
-              description: [],
-            },
-            {
-              title: "Software Developer Internship",
-              subtitle: "Internship",
-              caption: "Apr 2022 - Aug 2022 · 5 mos",
               description: [],
             },
           ],
@@ -3133,3 +3126,14 @@ export const linkedinData = [
     },
   },
 ];
+
+// hemanth [0]
+// gowtham [1]
+// aqudas [2]
+// shamili [3]
+// udaya [4]
+// zain [5]
+// mohan [6]
+// meghana [7]
+// rida [8]
+// bushra [9]
