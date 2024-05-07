@@ -4,6 +4,7 @@ import {
   Home,
   FileBadge2,
   BriefcaseBusiness,
+  User,
 } from "lucide-react";
 import { linkedinData } from "@/lower-linkedin-data";
 import { useState, useRef } from "react";
@@ -12,7 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import Link from "next/link";
 
 export default function ZA() {
-  const user = linkedinData[0];
+  const user = linkedinData[6];
   const postionRef = useRef(null);
   const educationRef = useRef(null);
   const certificationRef = useRef(null);
@@ -31,13 +32,17 @@ export default function ZA() {
     sectionRef.current.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <main className="w-full min-h-screen h-full p-6 flex justify-center items-center bg-[#171717] text-white ">
+    <main
+      className="w-full min-h-screen h-full p-3  lg:p-6 flex justify-center items-center md:bg-purple-500 lg:bg-red-500  
+    xl:bg-teal-500
+    2xl:bg-[#171717] text-white "
+    >
       {/* container */}
-      <div className="w-full h-full flex justify-center  space-x-3">
-        <div className="w-[440px] flex flex-col space-y-3   h-full border border-neutral-800 rounded-xl bg-[#1C1C1C] p-5 pb-0 ">
+      <div className="w-full h-full flex justify-center space-x-2  lg:space-x-3">
+        <div className="md:w-[330px] lg:w-[420px] xl:w-[500px] flex flex-col space-y-3   h-full border border-neutral-800 rounded-xl bg-[#1C1C1C] p-5 pb-0 ">
           <div className="flex justify-between">
             <img
-              className="w-28 h-28 rounded-full  border "
+              className="w-24 h-24 lg:w-28 lg:h-28 rounded-full  border "
               src={
                 user.profilePicture
                   ? user.profilePicture
@@ -47,28 +52,33 @@ export default function ZA() {
 
             <div className="w-full h-full flex justify-end items-start">
               <div className="bg-[#2B2B2B] p-2 rounded-full flex justify-center items-center">
-                <Home className="h-5 w-5 cursor-pointer" strokeWidth={1} />
+                <Home
+                  className="h-4 w-4 lg:h-5 lg:w-5 cursor-pointer"
+                  strokeWidth={1}
+                />
               </div>
             </div>
           </div>
           <div className="flex flex-col space-y-0.5">
-            <h1 className="text-xl font-semibold capitalize">
+            <h1 className=" lg:text-xl font-semibold capitalize">
               {user.firstName + " " + user.lastName}
             </h1>
             <div className="flex space-x-2.5 text-sm ">
               <Badge
                 variant={"secondary"}
-                className="capitalize cursor-pointer "
+                className="capitalize cursor-pointer"
               >
                 Download CV{" "}
               </Badge>
             </div>
           </div>
-          <h2 className="text-sm font-semibold">{user.headline}</h2>
+          <h2 className="text-sm font-medium lg:font-semibold">
+            {user.headline}
+          </h2>
           {user.summary && (
             <div className="flex flex-col space-y-0.5">
-              <h2 className=" font-semibold">Bio</h2>
-              <p className="text-xs">
+              <h2 className="text-sm lg:text-base font-semibold">Bio</h2>
+              <p className="text-xs ">
                 {user.summary.slice(0, showAllBio ? user.summary.length : 400)}
               </p>
               {user.summary.length > 400 && (
@@ -83,7 +93,7 @@ export default function ZA() {
           )}
           {user.languages && (
             <div className="flex flex-col space-y-0.5">
-              <h2 className="font-semibold">Lanquage</h2>
+              <h2 className="text-sm lg:text-base font-semibold">Lanquage</h2>
               <div className="flex space-x-1.5 flex-wrap">
                 {user.languages.map((lanq) => (
                   <span className="text-xs" key={lanq.name}>
@@ -99,8 +109,8 @@ export default function ZA() {
           </div>
         </div>
 
-        <div className="w-full h-full  flex flex-col space-y-3 max-w-[1200px] ">
-          <div className="h-16 px-12 flex flex-wrap items-center justify-start space-x-12 border border-neutral-800  rounded-xl bg-[#1C1C1C]">
+        <div className="w-full h-full  flex flex-col space-y-2 lg:space-y-3 max-w-[1200px] ">
+          <div className="h-16 px-8 lg:px-12 flex flex-wrap items-center justify-start space-x-5 lg:space-x-12 border border-neutral-800  rounded-xl bg-[#1C1C1C]">
             {user.position && (
               <span
                 className="text-sm font-semibold cursor-pointer"
@@ -142,13 +152,16 @@ export default function ZA() {
               </span>
             )}
             <span
-              className="text-sm font-semibold cursor-pointer"
+              className={`text-sm font-semibold cursor-pointer ${user.courses && user.certifications && user.skills
+                  ? "hidden xl:block"
+                  : ""
+                }`}
               onClick={() => handleSectionClick(socialeRef)}
             >
               Social
             </span>
           </div>
-          <ScrollArea className="h-[80vh] w-full border border-neutral-800  rounded-xl bg-[#1C1C1C]">
+          <ScrollArea className=" md:h-[100vh] lg:h-[80vh] w-full border border-neutral-800  rounded-xl bg-[#1C1C1C]">
             <div className="flex flex-col space-y-14 px-12  ">
               {/* postions */}
               {user.position && (
@@ -194,8 +207,8 @@ export default function ZA() {
                           </h4>
                           <h5
                             className={`${postion.companyIndustry
-                              ? "block text-xs "
-                              : "hidden"
+                                ? "block text-xs "
+                                : "hidden"
                               }`}
                           >{`Industry : ${postion.companyIndustry}`}</h5>
                           <h5 className="text-xs">{postion.location}</h5>
@@ -353,8 +366,10 @@ export default function ZA() {
                       .slice(0, showAllCourese ? user.courses.length : 5)
                       .map((course, i) => (
                         <div key={i} className="flex space-x-6 items-center ">
-                          <div className="bg-white h-4 w-4 max-h-4 max-w-4 rounded-xl"></div>
-                          <span className="">{course.name}</span>
+                          <div className="bg-white h-3 w-3 min-w-3 min-h-3 lg:h-4 lg:w-4 lg:min-h-4 lg:min-w-4 rounded-xl"></div>
+                          <span className="text-sm lg:text-base">
+                            {course.name}
+                          </span>
                         </div>
                       ))}
                     {user.courses.length > 5 && (
@@ -386,8 +401,10 @@ export default function ZA() {
                       .slice(0, showAllSkills ? user.skills.length : 5)
                       .map((skill, i) => (
                         <div key={i} className="flex space-x-6 items-center ">
-                          <div className="bg-white h-4 w-4 max-h-4 max-w-4 rounded-xl"></div>
-                          <span className="">{skill.name}</span>
+                          <div className="bg-white h-3 w-3 min-w-3 min-h-3 lg:h-4 lg:w-4 lg:min-h-4 lg:min-w-4 rounded-xl"></div>
+                          <span className="text-sm lg:text-base">
+                            {skill.name}
+                          </span>
                         </div>
                       ))}
                     {user.skills.length > 5 && (
