@@ -187,7 +187,7 @@ export default function ZA({ params }: { params: { id: string } }) {
 
                                                     {i !== user.position.length - 1 && (
                                                         <div
-                                                            className={`flex w-full justify-center items-center h-auto min-h-16`}
+                                                            className={`flex w-full justify-center items-center h-full min-h-16`}
                                                         >
                                                             <div className="h-full border"></div>
                                                         </div>
