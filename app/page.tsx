@@ -4,7 +4,6 @@ import {
   Home,
   FileBadge2,
   BriefcaseBusiness,
-  User,
 } from "lucide-react";
 import { linkedinData } from "@/lower-linkedin-data";
 import { useState, useRef } from "react";
@@ -13,7 +12,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import Link from "next/link";
 
 export default function ZA() {
-  const user = linkedinData[6];
+  const user = linkedinData[0];
   const postionRef = useRef(null);
   const educationRef = useRef(null);
   const certificationRef = useRef(null);
@@ -32,14 +31,10 @@ export default function ZA() {
     sectionRef.current.scrollIntoView({ behavior: "smooth" });
   };
   return (
-    <main
-      className="w-full min-h-screen h-full p-3  lg:p-6 flex justify-center items-center md:bg-purple-500 lg:bg-red-500  
-    xl:bg-teal-500
-    2xl:bg-[#171717] text-white "
-    >
+    <main className="w-full min-h-screen h-full p-3  lg:p-6 flex justify-center items-center bg-[#171717] text-white ">
       {/* container */}
-      <div className="w-full h-full flex justify-center space-x-2  lg:space-x-3">
-        <div className="md:w-[330px] lg:w-[420px] xl:w-[500px] flex flex-col space-y-3   h-full border border-neutral-800 rounded-xl bg-[#1C1C1C] p-5 pb-0 ">
+      <div className=" w-full h-full flex flex-col md:flex-row justify-center items-center md:items-start md:space-x-2  lg:space-x-3">
+        <div className="md:w-[330px] lg:w-[420px] xl:w-[500px] flex flex-col space-y-3   h-full border border-neutral-800 rounded-xl bg-[#1C1C1C] p-5  sm:pb-0 ">
           <div className="flex justify-between">
             <img
               className="w-24 h-24 lg:w-28 lg:h-28 rounded-full  border "
@@ -103,14 +98,14 @@ export default function ZA() {
               </div>
             </div>
           )}
-          <h5 className="text-xs">{user.geo.full}</h5>
-          <div className=" w-full flex p-4  mt-6 justify-center   border-t border-neutral-800 cursor-pointer">
+          <h5 className="text-xs hidden sm:block">{user.geo.full}</h5>
+          <div className="hidden w-full md:flex p-4  mt-6 justify-center   border-t border-neutral-800 cursor-pointer">
             <span className="text-sm capitalize font-semibold">WEBPOLIO</span>
           </div>
         </div>
 
         <div className="w-full h-full  flex flex-col space-y-2 lg:space-y-3 max-w-[1200px] ">
-          <div className="h-16 px-8 lg:px-12 flex flex-wrap items-center justify-start space-x-5 lg:space-x-12 border border-neutral-800  rounded-xl bg-[#1C1C1C]">
+          <div className="hidden  h-16   px-8 lg:px-12 md:flex flex-wrap items-center justify-start space-x-5 lg:space-x-12 border border-neutral-800  rounded-xl bg-[#1C1C1C]">
             {user.position && (
               <span
                 className="text-sm font-semibold cursor-pointer"
@@ -152,9 +147,9 @@ export default function ZA() {
               </span>
             )}
             <span
-              className={`text-sm font-semibold cursor-pointer ${user.courses && user.certifications && user.skills
-                  ? "hidden xl:block"
-                  : ""
+              className={`text-sm font-semibold cursor-pointer  ${user.courses && user.certifications && user.skills
+                ? "hidden xl:block"
+                : ""
                 }`}
               onClick={() => handleSectionClick(socialeRef)}
             >
@@ -162,7 +157,7 @@ export default function ZA() {
             </span>
           </div>
           <ScrollArea className=" md:h-[100vh] lg:h-[80vh] w-full border border-neutral-800  rounded-xl bg-[#1C1C1C]">
-            <div className="flex flex-col space-y-14 px-12  ">
+            <div className="flex flex-col space-y-8 md:space-y-14 px-4 md:px-12  ">
               {/* postions */}
               {user.position && (
                 <div
@@ -170,7 +165,7 @@ export default function ZA() {
                   ref={postionRef}
                 >
                   <div className="flex justify-start my-6">
-                    <h1 className="text-xl font-semibold">Experience</h1>
+                    <h1 className="text-xl font-semibold">Postions</h1>
                   </div>
 
                   {user.position
@@ -207,8 +202,8 @@ export default function ZA() {
                           </h4>
                           <h5
                             className={`${postion.companyIndustry
-                                ? "block text-xs "
-                                : "hidden"
+                              ? "block text-xs "
+                              : "hidden"
                               }`}
                           >{`Industry : ${postion.companyIndustry}`}</h5>
                           <h5 className="text-xs">{postion.location}</h5>
